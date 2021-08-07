@@ -1,0 +1,30 @@
+{
+  "name": "ansible-mac-dev-playbook",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Warning: no test specified\"",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TechIsFun/ansible-mac-dev-playbook.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TechIsFun/ansible-mac-dev-playbook/issues"
+  },
+  "homepage": "https://github.com/TechIsFun/ansible-mac-dev-playbook#readme",
+  "devDependencies": {
+    "husky": "^7.0.0"
+  },
+  "dependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0"
+  }
+}

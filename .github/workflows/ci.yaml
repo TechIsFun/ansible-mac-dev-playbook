@@ -36,7 +36,7 @@ jobs:
   test-osx:
     name: Test on OSX
     runs-on: macos-11
-    
+
     steps:
       - name: Check out the codebase.
         uses: actions/checkout@v2
