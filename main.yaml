@@ -1,0 +1,8 @@
+---
+- hosts: all
+
+  vars_files:
+    - vars/homebrew.yaml
+
+  tasks:
+    - import_tasks: tasks/homebrew.yaml
