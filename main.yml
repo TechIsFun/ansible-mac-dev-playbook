@@ -6,3 +6,5 @@
 
   tasks:
     - import_tasks: tasks/homebrew.yml
+
+    - import_tasks: tasks/ohmyzsh.yml
