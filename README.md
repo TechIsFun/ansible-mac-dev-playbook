@@ -1,6 +1,6 @@
 # Mac Development Ansible Playbook
 
-[![CI][badge-gh-actions]][link-gh-actions]
+![ci](https://github.com/TechIsFun/ansible-mac-dev-playbook/actions/workflows/ci.yml/badge.svg)
 
 Inspired by https://github.com/geerlingguy/mac-dev-playbook
 
