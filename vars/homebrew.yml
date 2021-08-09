@@ -5,7 +5,9 @@ homebrew_prefix: "{{ (ansible_machine == 'arm64') | ternary('/opt/homebrew', '/u
 homebrew_install_path: "{{ homebrew_prefix }}/Homebrew"
 homebrew_brew_bin_path: "{{ homebrew_prefix }}/bin"
 
-homebrew_installed_packages: []
+homebrew_installed_packages:
+  - zoxide
+  - ssh-copy-id
 
 homebrew_uninstalled_packages: []
 
@@ -15,6 +17,7 @@ homebrew_taps:
   - homebrew/core
 
 homebrew_cask_apps:
+  - docker
   - iterm2
 
 homebrew_cask_uninstalled_apps: []
