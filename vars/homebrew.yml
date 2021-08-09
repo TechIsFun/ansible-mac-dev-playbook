@@ -14,7 +14,8 @@ homebrew_upgrade_all_packages: false
 homebrew_taps:
   - homebrew/core
 
-homebrew_cask_apps: []
+homebrew_cask_apps:
+  - iterm2
 
 homebrew_cask_uninstalled_apps: []
 

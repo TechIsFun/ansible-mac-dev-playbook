@@ -52,11 +52,11 @@ jobs:
       - name: Install test dependencies.
         run: sudo pip3 install ansible
 
+      # You can use a test config by adding "cp tests/config.yml ./config.yml"
       - name: Set up the test environment.
         run: |
           cp tests/ansible.cfg ./ansible.cfg
           cp tests/inventory ./inventory
-          cp tests/config.yml ./config.yml
 
       - name: Test the playbook's syntax.
         run: ansible-playbook main.yml --syntax-check
@@ -73,3 +73,17 @@ jobs:
           tail ${idempotence} | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)
         env:
           ANSIBLE_FORCE_COLOR: '1'
+
+      - name: Start iterm2 and take a screenshot
+        run: |
+          open /Applications/iTerm.app
+          mkdir -p screenshots
+          screencapture screenshots/iterm.jpg
+
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: |
+            **/screenshots/*
