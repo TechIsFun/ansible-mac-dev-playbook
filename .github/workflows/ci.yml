@@ -1,5 +1,5 @@
 ---
-name: Validate and test ansible configuration
+name: Build and test
 
 on:
   push:
@@ -78,12 +78,13 @@ jobs:
         run: |
           open /Applications/iTerm.app
           mkdir -p screenshots
+          sleep 3
           screencapture screenshots/iterm.jpg
 
       - name: Upload artifacts
         if: always()
         uses: actions/upload-artifact@v2
         with:
-          name: test-results
+          name: artifacts
           path: |
             **/screenshots/*
