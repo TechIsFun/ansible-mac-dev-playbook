@@ -3,11 +3,14 @@
 
   vars_files:
     - vars/homebrew.yml
+    - vars/jenv.yml
 
   tasks:
     - import_tasks: tasks/homebrew.yml
 
     - import_tasks: tasks/ohmyzsh.yml
+
+    - import_tasks: tasks/jenv.yml
 
   handlers:
     - include: handlers/homebrew.yml

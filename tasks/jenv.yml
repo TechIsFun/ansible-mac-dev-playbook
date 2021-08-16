@@ -1,0 +1,73 @@
+---
+# https://github.com/EiyuuZack/ansible-role-jenv
+
+- name: Ensure AdoptOpenJDK/openjdk tap is tapped
+  homebrew_tap:
+    name: AdoptOpenJDK/openjdk
+    state: present
+
+- name: Ensure jenv is installed
+  homebrew:
+    name: jenv
+    state: present
+
+- name: 'Ensure {{ jenv_root }} directory is created'
+  file:
+    path: "{{ jenv_root }}"
+    state: directory
+    mode: 0755
+
+- name: 'Ensure {{ jenv_root }}/versions directory is created'
+  file:
+    path: "{{ jenv_root }}/versions"
+    state: directory
+    mode: 0755
+
+- name: Ensure selected JDK versions are installed
+  block:
+    - name: "Install {{ item.version }}"
+      homebrew_cask:
+        name: "{{ item.version }}"
+        state: present
+      with_items: "{{ jenv_jdks }}"
+
+- name: Get available JDKs
+  command: ls -1 /Library/Java/JavaVirtualMachines/
+  register: jdks
+  ignore_errors: true
+  changed_when: false
+
+- name: Print list of available JDKs
+  debug:
+    var: jdks
+    verbosity: 1
+
+- name: Ensure JDKs are registered
+  command: "jenv add /Library/Java/JavaVirtualMachines/{{ item }}/Contents/Home"
+  with_items: "{{ jdks.stdout_lines }}"
+  ignore_errors: true
+  register: result
+  changed_when: "'already' not in result.stdout"
+  failed_when: "result.rc != 0 and 'already' not in result.stdout"
+
+- name: "Ensure JDK {{ jenv_default_jdk }} is default"
+  command: "jenv global {{ jenv_default_jdk|quote }}"
+  changed_when: false
+
+- name: Ensure shims are updated
+  command: jenv rehash
+  changed_when: false
+
+- name: Ensure jenv is initialized in bash_profile
+  lineinfile:
+    path: "/Users/{{ ansible_user_id }}/.bash_profile"
+    line: 'eval "$(jenv init -)"'
+
+- name: Ensure jenv is initialized in zshrc
+  lineinfile:
+    path: "/Users/{{ ansible_user_id }}/.zshrc"
+    line: 'eval "$(jenv init -)"'
+
+- name: Ensure JAVA_HOME is exposed automatically
+  shell: $SHELL -lc 'jenv enable-plugin export'
+  changed_when: false

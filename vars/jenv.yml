@@ -1,0 +1,6 @@
+---
+jenv_root: ~/.jenv
+jenv_default_jdk: 1.8
+jenv_jdks:
+  - version: adoptopenjdk8
+  - version: adoptopenjdk11

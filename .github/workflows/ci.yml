@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - jenv
     paths-ignore:
       - '**.md'
   pull_request:
@@ -62,7 +63,7 @@ jobs:
         run: ansible-playbook main.yml --syntax-check
 
       - name: Test the playbook.
-        run: ansible-playbook main.yml
+        run: ansible-playbook -v main.yml
         env:
           ANSIBLE_FORCE_COLOR: '1'
 
