@@ -12,5 +12,7 @@
 
     - import_tasks: tasks/jenv.yml
 
+    - import_tasks: tasks/android.yml
+
   handlers:
     - include: handlers/homebrew.yml

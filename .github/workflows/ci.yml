@@ -5,7 +5,7 @@ on:
   push:
     branches:
       - main
-      - jenv
+      - android
     paths-ignore:
       - '**.md'
   pull_request:

@@ -1,0 +1,23 @@
+---
+
+- name: Update Android SDK
+  command: sdkmanager --update
+  changed_when: false
+  check_mode: false
+
+# Clone Android sample app repo and check that app can be built
+- name: Clone architecture-samples repo.
+  git:
+    repo: https://github.com/android/architecture-samples.git
+    version: master
+    dest: android-architecture-samples
+    update: false
+    depth: 1
+
+- name: Ensure that Android app can be compiled
+  command: ./gradlew assembleDebug
+  args:
+    chdir: android-architecture-samples
+  changed_when: false
+  # args:
+  #  creates: "/Users/{{ ansible_user_id }}/android-architecture-samples/app/build/outputs/apk"

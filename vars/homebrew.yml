@@ -19,6 +19,7 @@ homebrew_taps:
 homebrew_cask_apps:
   - docker
   - iterm2
+  - android-sdk
 
 homebrew_cask_uninstalled_apps: []
 
