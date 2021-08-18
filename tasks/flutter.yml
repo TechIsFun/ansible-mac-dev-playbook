@@ -1,0 +1,42 @@
+---
+
+- name: Ensure FVM tap is tapped
+  homebrew_tap:
+    name: leoafarias/fvm
+    state: present
+  tags: ['flutter']
+
+- name: Ensure FVM is installed
+  homebrew:
+    name: fvm
+    state: present
+  tags: ['flutter']
+
+- name: Install Flutter SDK (stable)
+  # with pipefail if the first command fails, the whole task will fail (required by Ansible)
+  shell: set -o pipefail && echo "y" | fvm global stable
+  changed_when: false
+  tags: ['flutter']
+
+- name: Download Dart SDK from Flutter engine
+  command: fvm flutter --version
+  changed_when: false
+  tags: ['flutter']
+
+- name: Create a sample Flutter app
+  command: fvm flutter create my_flutter_app
+  args:
+    chdir: /tmp
+    creates: /tmp/my_flutter_app/pubspec.yaml
+
+- name: Ensure that sample app can be compiled
+  command: "{{ item }}"
+  args:
+    chdir: /tmp/my_flutter_app
+    creates: /tmp/my_flutter_app/build/app/outputs/flutter-apk/app-debug.apk
+  with_items:
+    - fvm flutter pub get
+    - fvm flutter analyze
+    - fvm flutter test
+    - fvm flutter build apk --debug
+  tags: ['flutter']

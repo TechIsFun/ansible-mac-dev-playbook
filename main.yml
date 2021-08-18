@@ -14,5 +14,7 @@
 
     - import_tasks: tasks/android.yml
 
+    - import_tasks: tasks/flutter.yml
+
   handlers:
     - include: handlers/homebrew.yml

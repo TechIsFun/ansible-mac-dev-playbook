@@ -5,7 +5,7 @@ on:
   push:
     branches:
       - main
-      - android
+      - flutter
     paths-ignore:
       - '**.md'
   pull_request:
