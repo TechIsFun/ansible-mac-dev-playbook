@@ -10,7 +10,7 @@
     - role: geerlingguy.dotfiles
       when: configure_dotfiles
       tags: ['dotfiles']
-  
+
   tasks:
     - import_tasks: tasks/homebrew.yml
 
@@ -30,8 +30,8 @@
         depth: 1
       tags: ['dotfiles']
 
-    - name: Run .osx dotfiles.  
-      shell: ~/.osx --no-restart  
+    - name: Run .osx dotfiles.
+      shell: ~/.osx --no-restart
       changed_when: false
       tags: ['dotfiles']
 

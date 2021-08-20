@@ -5,7 +5,7 @@ on:
   push:
     branches:
       - main
-      - flutter
+      - dotfiles
     paths-ignore:
       - '**.md'
   pull_request:
