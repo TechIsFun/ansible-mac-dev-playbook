@@ -5,6 +5,12 @@
     - vars/homebrew.yml
     - vars/jenv.yml
 
+  roles:
+    - role: elliotweiser.osx-command-line-tools
+    - role: geerlingguy.dotfiles
+      when: configure_dotfiles
+      tags: ['dotfiles']
+  
   tasks:
     - import_tasks: tasks/homebrew.yml
 
@@ -15,6 +21,19 @@
     - import_tasks: tasks/android.yml
 
     - import_tasks: tasks/flutter.yml
+
+    - name: Install Vundle
+      git:
+        repo: https://github.com/VundleVim/Vundle.vim.git
+        version: master
+        dest: ~/.vim/bundle/Vundle.vim
+        depth: 1
+      tags: ['dotfiles']
+
+    - name: Run .osx dotfiles.  
+      shell: ~/.osx --no-restart  
+      changed_when: false
+      tags: ['dotfiles']
 
   handlers:
     - include: handlers/homebrew.yml

@@ -58,12 +58,14 @@ jobs:
         run: |
           cp tests/ansible.cfg ./ansible.cfg
           cp tests/inventory ./inventory
+          ansible-galaxy install -r requirements.yml
 
       - name: Test the playbook's syntax.
         run: ansible-playbook main.yml --syntax-check
 
       - name: Test the playbook.
-        run: ansible-playbook -v main.yml
+        # run: ansible-playbook -v main.yml
+        run: ansible-playbook -v main.yml --tags dotfiles
         env:
           ANSIBLE_FORCE_COLOR: '1'
 
