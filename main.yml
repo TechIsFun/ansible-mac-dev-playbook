@@ -4,6 +4,7 @@
   vars_files:
     - vars/homebrew.yml
     - vars/jenv.yml
+    - vars/dotfiles.yml
 
   roles:
     - role: elliotweiser.osx-command-line-tools
