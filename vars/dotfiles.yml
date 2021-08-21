@@ -1,5 +1,6 @@
 ---
 
+configure_dotfiles: true
 dotfiles_repo: https://github.com/techisfun/dotfiles.git
 dotfiles_repo_accept_hostkey: true
 dotfiles_repo_local_destination: ~/repositories/dotfiles
