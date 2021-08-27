@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - main
-      - dotfiles
     paths-ignore:
       - '**.md'
   pull_request:
@@ -65,14 +64,14 @@ jobs:
 
       - name: Test the playbook.
         # run: ansible-playbook -v main.yml
-        run: ansible-playbook -v main.yml --tags dotfiles
+        run: ansible-playbook -v main.yml
         env:
           ANSIBLE_FORCE_COLOR: '1'
 
       - name: Idempotence check.
         run: |
           idempotence=$(mktemp)
-          ansible-playbook main.yml --tags dotfiles | tee -a ${idempotence}
+          ansible-playbook main.yml | tee -a ${idempotence}
           tail ${idempotence} | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)
         env:
           ANSIBLE_FORCE_COLOR: '1'
