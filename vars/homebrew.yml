@@ -20,6 +20,7 @@ homebrew_cask_apps:
   - docker
   - iterm2
   - android-sdk
+  - jetbrains-toolbox
 
 homebrew_cask_uninstalled_apps: []
 
