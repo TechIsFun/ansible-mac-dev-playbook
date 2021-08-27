@@ -21,6 +21,7 @@ homebrew_cask_apps:
   - iterm2
   - android-sdk
   - jetbrains-toolbox
+  - dropbox
 
 homebrew_cask_uninstalled_apps: []
 
