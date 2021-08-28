@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - 1password6
     paths-ignore:
       - '**.md'
   pull_request:
