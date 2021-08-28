@@ -24,6 +24,7 @@ homebrew_cask_apps:
   - dropbox
   - obsidian
   - slack
+  - brave-browser
 
 homebrew_cask_uninstalled_apps: []
 
