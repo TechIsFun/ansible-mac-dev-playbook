@@ -17,7 +17,7 @@ homebrew_taps:
   - homebrew/core
 
 homebrew_cask_apps:
-  - Homebrew/homebrew-cask-versions/1password6
+  - TechIsFun/homebrew-1password6/1password6
   - docker
   - iterm2
   - android-sdk
