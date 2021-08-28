@@ -22,6 +22,7 @@ homebrew_cask_apps:
   - android-sdk
   - jetbrains-toolbox
   - dropbox
+  - obsidian
 
 homebrew_cask_uninstalled_apps: []
 
