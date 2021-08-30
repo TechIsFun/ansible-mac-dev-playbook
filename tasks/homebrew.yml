@@ -113,6 +113,7 @@
         url: '{{ item.url | default(omit) }}'
         state: present
       loop: "{{ homebrew_taps }}"
+      ignore_errors: yes
 
     # Cask.
     - name: Ensure blacklisted cask applications are not installed.
@@ -127,6 +128,7 @@
         accept_external_apps: "{{ homebrew_cask_accept_external_apps }}"
         sudo_password: "{{ ansible_become_password | default(omit) }}"
       loop: "{{ homebrew_cask_apps }}"
+      ignore_errors: yes
       notify:
         - Clear homebrew cache
 
