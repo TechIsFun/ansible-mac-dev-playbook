@@ -23,6 +23,8 @@
 
     - import_tasks: tasks/flutter.yml
 
+    - import_tasks: tasks/one_password.yml
+
     - name: Install Vundle
       git:
         repo: https://github.com/VundleVim/Vundle.vim.git
