@@ -25,6 +25,7 @@ homebrew_cask_apps:
   - obsidian
   - slack
   - brave-browser
+  - sublime-text
 
 homebrew_cask_uninstalled_apps: []
 
