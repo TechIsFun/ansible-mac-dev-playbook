@@ -6,6 +6,10 @@
     - vars/jenv.yml
     - vars/dotfiles.yml
 
+  pre_tasks:
+    - import_tasks: tasks/homebrew.yml
+      tags: ['homebrew']
+
   roles:
     - role: elliotweiser.osx-command-line-tools
     - role: geerlingguy.dotfiles
@@ -13,8 +17,6 @@
       tags: ['dotfiles']
 
   tasks:
-    - import_tasks: tasks/homebrew.yml
-
     - import_tasks: tasks/ohmyzsh.yml
 
     - import_tasks: tasks/jenv.yml
@@ -24,6 +26,8 @@
     - import_tasks: tasks/flutter.yml
 
     - import_tasks: tasks/one_password.yml
+
+    - import_tasks: tasks/dock.yml
 
     - name: Install Vundle
       git:
