@@ -21,6 +21,8 @@
 
     - import_tasks: tasks/jenv.yml
 
+    - import_tasks: tasks/aws.yml
+
     - import_tasks: tasks/android.yml
 
     - import_tasks: tasks/flutter.yml
