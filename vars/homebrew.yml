@@ -26,6 +26,7 @@ homebrew_cask_apps:
   - slack
   - brave-browser
   - sublime-text
+  - tor-browser
 
 homebrew_cask_uninstalled_apps: []
 
