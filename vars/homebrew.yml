@@ -28,6 +28,8 @@ homebrew_cask_apps:
   - sublime-text
   - tor-browser
   - vagrant
+  - virtualbox
+  - virtualbox-extension-pack
 
 homebrew_cask_uninstalled_apps: []
 
