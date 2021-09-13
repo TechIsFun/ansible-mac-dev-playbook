@@ -27,6 +27,7 @@ homebrew_cask_apps:
   - brave-browser
   - sublime-text
   - tor-browser
+  - vagrant
 
 homebrew_cask_uninstalled_apps: []
 
