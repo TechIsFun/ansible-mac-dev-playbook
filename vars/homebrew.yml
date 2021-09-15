@@ -31,6 +31,7 @@ homebrew_cask_apps:
   - virtualbox
   - virtualbox-extension-pack
   - alfred
+  - kap
 
 homebrew_cask_uninstalled_apps: []
 
