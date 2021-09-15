@@ -30,6 +30,7 @@ homebrew_cask_apps:
   - vagrant
   - virtualbox
   - virtualbox-extension-pack
+  - alfred
 
 homebrew_cask_uninstalled_apps: []
 
