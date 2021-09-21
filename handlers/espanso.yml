@@ -1,0 +1,5 @@
+---
+
+- name: Restart espanso
+  command: espanso restart
+  changed_when: false

@@ -8,6 +8,7 @@ homebrew_brew_bin_path: "{{ homebrew_prefix }}/bin"
 homebrew_installed_packages:
   - zoxide
   - ssh-copy-id
+  - espanso
 
 homebrew_uninstalled_packages: []
 
@@ -15,6 +16,7 @@ homebrew_upgrade_all_packages: false
 
 homebrew_taps:
   - homebrew/core
+  - federico-terzi/espanso
 
 homebrew_cask_apps:
   - docker

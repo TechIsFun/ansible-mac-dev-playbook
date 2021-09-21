@@ -1,0 +1,14 @@
+---
+
+- name: Ensure espanso items are installed
+  command: espanso install {{ item }}
+  with_items:
+    - lorem
+    - basic-emojis
+    - shruggie
+    - arrows
+    - mac-symbols
+    - cht
+  changed_when: false
+  notify:
+    - Restart espanso

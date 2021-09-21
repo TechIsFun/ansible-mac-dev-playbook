@@ -51,3 +51,4 @@
 
   handlers:
     - include: handlers/homebrew.yml
+    - include: handlers/espanso.yml
