@@ -9,6 +9,7 @@ homebrew_installed_packages:
   - zoxide
   - ssh-copy-id
   - espanso
+  - p7zip
 
 homebrew_uninstalled_packages: []
 
