@@ -34,6 +34,7 @@ homebrew_cask_apps:
   - virtualbox-extension-pack
   - alfred
   - kap
+  - google-drive
 
 homebrew_cask_uninstalled_apps: []
 
