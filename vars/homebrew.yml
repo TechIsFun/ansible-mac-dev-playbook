@@ -10,6 +10,7 @@ homebrew_installed_packages:
   - ssh-copy-id
   - espanso
   - p7zip
+  - task
 
 homebrew_uninstalled_packages: []
 
