@@ -11,6 +11,7 @@ homebrew_installed_packages:
   - espanso
   - p7zip
   - task
+  - pritunl
 
 homebrew_uninstalled_packages: []
 
