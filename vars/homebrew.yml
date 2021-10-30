@@ -18,6 +18,7 @@ homebrew_upgrade_all_packages: false
 
 homebrew_taps:
   - homebrew/core
+  - homebrew/cask-fonts
   - federico-terzi/espanso
 
 homebrew_cask_apps:
@@ -37,6 +38,11 @@ homebrew_cask_apps:
   - alfred
   - kap
   - google-drive
+  - font-roboto
+  - font-roboto-mono
+  - font-roboto-slab
+  - font-roboto-condensed
+  - font-jetbrains-mono
 
 homebrew_cask_uninstalled_apps: []
 
