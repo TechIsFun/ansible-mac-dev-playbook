@@ -37,6 +37,7 @@ homebrew_cask_apps:
   - alfred
   - kap
   - google-drive
+  - google-cloud-sdk
 
 homebrew_cask_uninstalled_apps: []
 
