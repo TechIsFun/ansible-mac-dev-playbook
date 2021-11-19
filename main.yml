@@ -15,6 +15,7 @@
     - role: geerlingguy.dotfiles
       when: configure_dotfiles
       tags: ['dotfiles']
+    - role: geerlingguy.ruby
 
   tasks:
     - import_tasks: tasks/ohmyzsh.yml

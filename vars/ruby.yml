@@ -1,0 +1,4 @@
+---
+
+ruby_install_gems:
+  - fastlane
