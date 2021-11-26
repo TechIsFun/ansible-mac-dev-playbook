@@ -1,9 +1,9 @@
 ---
 # https://github.com/EiyuuZack/ansible-role-jenv
 
-- name: Ensure AdoptOpenJDK/openjdk tap is tapped
+- name: Ensure zulu jdk tap is tapped
   homebrew_tap:
-    name: AdoptOpenJDK/openjdk
+    name: mdogan/zulu
     state: present
 
 - name: Ensure jenv is installed
