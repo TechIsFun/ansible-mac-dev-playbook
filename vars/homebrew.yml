@@ -41,6 +41,7 @@ homebrew_cask_apps:
   - google-cloud-sdk
   - telegram
   - pritunl
+  - rectangle
 
 homebrew_cask_uninstalled_apps: []
 
