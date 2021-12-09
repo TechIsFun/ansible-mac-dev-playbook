@@ -27,6 +27,9 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: Upgrade pip.
+        run: pip3 install --upgrade pip
+
       - name: Install test dependencies.
         run: pip3 install yamllint ansible ansible-lint
 
