@@ -27,9 +27,6 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Upgrade pip.
-        run: pip3 install --upgrade pip
-
       - name: Install test dependencies.
         run: pip3 install yamllint ansible ansible-lint
 
@@ -53,6 +50,9 @@ jobs:
         run: |
           sudo rm -rf /Applications/Firefox.app
           sudo rm -rf /Applications/Google\ Chrome.app
+
+      - name: Upgrade pip.
+        run: pip3 install --upgrade pip
 
       - name: Install test dependencies.
         run: sudo pip3 install ansible
