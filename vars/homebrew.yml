@@ -12,6 +12,7 @@ homebrew_installed_packages:
   - p7zip
   - task
   - ruby
+  - gnupg
 
 homebrew_uninstalled_packages: []
 
