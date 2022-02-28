@@ -12,27 +12,27 @@
       tags: ['always']
 
   tasks:
-    #- import_tasks: tasks/ohmyzsh.yml
+    # - import_tasks: tasks/ohmyzsh.yml
     #  tags: ['zsh']
 
-    #- import_tasks: tasks/jenv.yml
+    # - import_tasks: tasks/jenv.yml
     #  tags: ['java', 'android', 'flutter']
 
-    #- import_tasks: tasks/aws.yml
+    # - import_tasks: tasks/aws.yml
     #  tags: ['aws']
 
-    #- import_tasks: tasks/android.yml
+    # - import_tasks: tasks/android.yml
     #  tags: ['java', 'android', 'flutter']
 
-    #- import_tasks: tasks/flutter.yml
+    # - import_tasks: tasks/flutter.yml
     #  tags: ['flutter']
 
-    #- import_tasks: tasks/one_password.yml
+    # - import_tasks: tasks/one_password.yml
 
-    #- import_tasks: tasks/dock.yml
-    #  tags: ['osx']
+    - import_tasks: tasks/dock.yml
+      tags: ['osx']
 
-    #- name: Install Vundle
+    # - name: Install Vundle
     #  git:
     #    repo: https://github.com/VundleVim/Vundle.vim.git
     #    version: master
@@ -40,15 +40,19 @@
     #    depth: 1
     #  tags: ['dotfiles']
 
-    #- name: Install Vundle Plugins
+    # - name: Install Vundle Plugins
     #  command: vim +PluginInstall +qall
     #  changed_when: false
     #  tags: ['dotfiles']
 
-    #- name: Run .osx dotfiles.
+    # - name: Run .osx dotfiles.
     #  shell: ~/.osx --no-restart
     #  changed_when: false
     #  tags: ['osx']
+
+    - name: Debug print
+      debug:
+        msg: "Debug message"
 
   handlers:
     - include: handlers/homebrew.yml

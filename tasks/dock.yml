@@ -29,6 +29,6 @@
       command: dockutil --add ~/Downloads/ --label "Downloads" --view fan --display folder --no-restart
       changed_when: false
     - name: Add Screenshots item
-      command: dockutil --add ~/Screenshots/ --label "Screenshots" --view fan --display folder
+      command: dockutil --add ~/Pictures/Screenshots/ --label "Screenshots" --view fan --display folder
       changed_when: false
   tags: ['dock']

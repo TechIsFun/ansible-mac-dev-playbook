@@ -3,7 +3,7 @@
   shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
   args:
     creates: "/Users/{{ lookup('env', 'USER') }}/.oh-my-zsh"
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: Set ZSH as the default shell
   become: true
