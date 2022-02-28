@@ -3,3 +3,4 @@
 *.retry
 roles*
 node_modules
+config.yml

@@ -2,53 +2,61 @@
 - hosts: all
 
   vars_files:
-    - vars/homebrew.yml
-    - vars/jenv.yml
-    - vars/dotfiles.yml
+    - default.config.yml
 
   pre_tasks:
-    - import_tasks: tasks/homebrew.yml
-      tags: ['homebrew']
-
-  roles:
-    - role: elliotweiser.osx-command-line-tools
-    - role: geerlingguy.dotfiles
-      when: configure_dotfiles
-      tags: ['dotfiles']
+    - name: Include playbook configuration.
+      include_vars: "{{ item }}"
+      with_fileglob:
+        - "{{ playbook_dir }}/config.yml"
+      tags: ['always']
 
   tasks:
-    - import_tasks: tasks/ohmyzsh.yml
+    #- import_tasks: tasks/ohmyzsh.yml
+    #  tags: ['zsh']
 
-    - import_tasks: tasks/jenv.yml
+    #- import_tasks: tasks/jenv.yml
+    #  tags: ['java', 'android', 'flutter']
 
-    - import_tasks: tasks/aws.yml
+    #- import_tasks: tasks/aws.yml
+    #  tags: ['aws']
 
-    - import_tasks: tasks/android.yml
+    #- import_tasks: tasks/android.yml
+    #  tags: ['java', 'android', 'flutter']
 
-    - import_tasks: tasks/flutter.yml
+    #- import_tasks: tasks/flutter.yml
+    #  tags: ['flutter']
 
-    - import_tasks: tasks/one_password.yml
+    #- import_tasks: tasks/one_password.yml
 
-    - import_tasks: tasks/dock.yml
+    #- import_tasks: tasks/dock.yml
+    #  tags: ['osx']
 
-    - name: Install Vundle
-      git:
-        repo: https://github.com/VundleVim/Vundle.vim.git
-        version: master
-        dest: ~/.vim/bundle/Vundle.vim
-        depth: 1
-      tags: ['dotfiles']
+    #- name: Install Vundle
+    #  git:
+    #    repo: https://github.com/VundleVim/Vundle.vim.git
+    #    version: master
+    #    dest: ~/.vim/bundle/Vundle.vim
+    #    depth: 1
+    #  tags: ['dotfiles']
 
-    - name: Install Vundle Plugins
-      command: vim +PluginInstall +qall
-      changed_when: false
-      tags: ['dotfiles']
+    #- name: Install Vundle Plugins
+    #  command: vim +PluginInstall +qall
+    #  changed_when: false
+    #  tags: ['dotfiles']
 
-    - name: Run .osx dotfiles.
-      shell: ~/.osx --no-restart
-      changed_when: false
-      tags: ['dotfiles']
+    #- name: Run .osx dotfiles.
+    #  shell: ~/.osx --no-restart
+    #  changed_when: false
+    #  tags: ['osx']
 
   handlers:
     - include: handlers/homebrew.yml
     - include: handlers/espanso.yml
+
+  roles:
+    - role: elliotweiser.osx-command-line-tools
+    - role: geerlingguy.mac.homebrew
+    - role: geerlingguy.dotfiles
+      when: configure_dotfiles
+      tags: ['dotfiles']

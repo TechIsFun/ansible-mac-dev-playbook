@@ -1,4 +1,9 @@
 ---
+
+# Dotfile
+configure_dotfiles: false
+
+# Homebrew
 homebrew_repo: https://github.com/Homebrew/brew
 
 homebrew_prefix: "{{ (ansible_machine == 'arm64') | ternary('/opt/homebrew', '/usr/local') }}"
@@ -74,3 +79,10 @@ homebrew_folders_base:
   - var
 
 homebrew_folders_additional: []
+
+# Jenv
+jenv_root: ~/.jenv
+jenv_default_jdk: 11
+jenv_jdks:
+  - version: zulu-jdk11
+  - version: zulu-jdk8
