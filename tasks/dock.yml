@@ -26,9 +26,9 @@
       command: dockutil --add /Applications/Slack.app --label "Slack" --no-restart
       changed_when: false
     - name: Add Downloads item
-      command: dockutil --add ~/Downloads/ --label "Downloads" --view fan --display folder --no-restart
+      command: dockutil --add ~/Downloads/ --label "Downloads" --view fan --display stack --no-restart
       changed_when: false
     - name: Add Screenshots item
-      command: dockutil --add ~/Pictures/Screenshots/ --label "Screenshots" --view fan --display folder
+      command: dockutil --add ~/Pictures/Screenshots/ --label "Screenshots" --view fan --display stack
       changed_when: false
   tags: ['dock']
