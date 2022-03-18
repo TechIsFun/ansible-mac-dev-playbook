@@ -1,4 +1,11 @@
 ---
+
+# Dotfile
+configure_dotfiles: false
+
+#
+# Homebrew
+#
 homebrew_installed_packages:
   - autoconf
   - bash-completion
@@ -11,6 +18,43 @@ homebrew_installed_packages:
   - wget
   - wrk
 
+homebrew_uninstalled_packages:
+  - bitrise
+
+homebrew_upgrade_all_packages: false
+
+homebrew_taps:
+  - homebrew/core
+  - federico-terzi/espanso
+  - homebrew/cask-drivers
+
 homebrew_cask_apps:
   - firefox
   - licecap
+  - vagrant
+  - virtualbox
+  - virtualbox-extension-pack
+
+homebrew_cask_uninstalled_apps: []
+
+#
+# Git repositories
+#
+git_repo_parent: ~/repositories
+git_repo_list:
+  - {repo: git@github.com:TechIsFun/template-android-library.git, local_dir: template-android-library, branch: main}
+git_remove_repo_list: []
+
+#
+# SSH Hosts
+#
+ssh_hosts:
+  - {host: testhost, user: testuser, hostname: test-hostname, identity_file: ~/.ssh/id_rsa}
+
+#
+# Crontab
+#
+crontab_unwanted_entries: []
+crontab_daily_entries: []
+crontab_weekly_entries: []
+crontab_entries_log: ">/tmp/crontab.log 2>/tmp/crontab_err.log"

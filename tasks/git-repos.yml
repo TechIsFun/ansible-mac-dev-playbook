@@ -1,0 +1,15 @@
+---
+
+- name: Ensure repositories checkout exists
+  git:
+   repo: "{{ item.repo }}"
+   dest: "{{ git_repo_parent }}/{{ item.local_dir }}"
+   version: "{{ item.branch }}"
+   update: false
+  with_items: "{{ git_repo_list }}"
+
+- name: Ensure unwanted local repo checkout are deleted
+  file:
+   path: "{{ git_repo_parent }}/{{ item.local_dir }}"
+   state: absent
+  with_items: "{{ git_remove_repo_list }}"

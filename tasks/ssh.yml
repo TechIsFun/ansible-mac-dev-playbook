@@ -1,0 +1,24 @@
+---
+
+- name: Ensure ssh hosts are configured
+  blockinfile:
+    path: ~/.ssh/config
+    block: |
+      Host {{ item.host }}
+        User {{ item.user }}
+        Hostname {{ item.hostname }}
+        IdentityFile {{ item.identity_file | default('~/.ssh/id_rsa') }}
+        Port {{ item.port | default(22) }}
+    state: present
+    marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.host }}"
+  loop: "{{ ssh_hosts }}"
+
+# - name: Ensure ssh hosts are configured
+#  community.general.ssh_config:
+#    user: "{{ item.user }}"
+#    host: "{{ item.host }}"
+#    hostname: "{{ item.hostname }}"
+#    identity_file: "{{ item.identity_file }} | ~/.ssh/id_rsa"
+#    port: "{{ item.port | default(22) }}"
+#    state: present
+#  with_items:  "{{ ssh_hosts }}"

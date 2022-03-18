@@ -1,0 +1,21 @@
+---
+
+- name: Ensure unwanted crontab entries are removed
+  cron:
+    name: "{{ item.name }}"
+    state: absent
+  with_items: "{{ crontab_unwanted_entries }}"
+
+- name: Ensure daily crontab entries are set
+  cron:
+    name: "{{ item.name }}"
+    job: "{{ item.job }} {{ crontab_entries_log }}"
+    special_time: daily
+  with_items: "{{ crontab_daily_entries }}"
+
+- name: Ensure weekly crontab entries are set
+  cron:
+    name: "{{ item.name }}"
+    job: "{{ item.job }} {{ crontab_entries_log }}"
+    special_time: weekly
+  with_items: "{{ crontab_weekly_entries }}"
