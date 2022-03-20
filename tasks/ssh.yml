@@ -1,5 +1,10 @@
 ---
 
+- name: Ensure ssh config file exists
+  file:
+    path: ~/.ssh/config
+    state: present
+
 - name: Ensure ssh hosts are configured
   blockinfile:
     path: ~/.ssh/config
