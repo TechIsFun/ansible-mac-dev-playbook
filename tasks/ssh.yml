@@ -1,9 +1,9 @@
 ---
 
 - name: Ensure ssh config file exists
-  file:
+  ansible.builtin.file:
     path: ~/.ssh/config
-    state: present
+    state: touch
 
 - name: Ensure ssh hosts are configured
   blockinfile:
