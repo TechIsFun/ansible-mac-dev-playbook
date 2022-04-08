@@ -4,6 +4,8 @@
   ansible.builtin.file:
     path: ~/.ssh/config
     state: touch
+    modification_time: preserve
+    access_time: preserve
 
 - name: Ensure ssh hosts are configured
   blockinfile:
