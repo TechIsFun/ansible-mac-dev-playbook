@@ -32,3 +32,4 @@
       command: dockutil --add ~/Pictures/Screenshots/ --label "Screenshots" --view fan --display stack
       changed_when: false
   tags: ['dock']
+  ignore_errors: true
