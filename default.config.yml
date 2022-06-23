@@ -87,6 +87,26 @@ jenv_jdks:
   - version: zulu-jdk11
   - version: zulu-jdk8
 
+#
 # Git repositories
+#
 git_repo_parent: ~/repositories
-git_repo_list: []
+git_repo_list:
+  - {repo: git@github.com:TechIsFun/template-android-library.git, local_dir: template-android-library, branch: main}
+git_remove_repo_list: []
+
+#
+# SSH Hosts
+#
+ssh_hosts:
+  - {host: myserver, user: myuser, hostname: myserver.local, identity_file: ~/.ssh/id_rsa}
+
+#
+# Crontab
+#
+crontab_unwanted_entries: []
+crontab_daily_entries:
+  - {name: "Remove all images which are not used by existing containers", job: "/usr/local/bin/docker image prune -a -f"}
+crontab_weekly_entries:
+  - {name: "Cleaup Xcode device data", job: "/usr/bin/xcrun simctl delete unavailable"}
+crontab_entries_log: "> /tmp/crontab.log 2> /tmp/crontab_err.log"
