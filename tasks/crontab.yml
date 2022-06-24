@@ -9,7 +9,7 @@
 - name: Ensure daily crontab entries are set
   cron:
     name: "{{ item.name }}"
-    job: "{{ item.job }} {{ crontab_entries_log }}"
+    job: "{{ item.job }}"
     special_time: daily
   with_items: "{{ crontab_daily_entries }}"
 
