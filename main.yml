@@ -15,14 +15,14 @@
     # - import_tasks: tasks/ohmyzsh.yml
     #  tags: ['zsh']
 
-    # - import_tasks: tasks/jenv.yml
-    #  tags: ['java', 'android', 'flutter']
+    - import_tasks: tasks/jenv.yml
+      tags: ['java', 'android', 'flutter']
 
     # - import_tasks: tasks/aws.yml
     #  tags: ['aws']
 
-    # - import_tasks: tasks/android.yml
-    #  tags: ['java', 'android', 'flutter']
+    - import_tasks: tasks/android.yml
+      tags: ['java', 'android', 'flutter']
 
     - import_tasks: tasks/flutter.yml
       tags: ['flutter']
