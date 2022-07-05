@@ -1,13 +1,13 @@
 ---
 - name: Ensure pre-commit is installed when required
   block:
-  - name: Check if .pre-commit-config.yaml exists
+  - name: Check if .pre-commit-config.yaml exists in {{ item.local_dir }}
     ansible.builtin.stat:
       path: "{{ git_repo_parent }}/{{ item.local_dir }}/.pre-commit-config.yaml"
     register: file
-  - name: Ensure pre-commit is installed when .pre-commit-config.yaml exists
+  - name: Ensure pre-commit is installed in {{ item.local_dir }}
     command: pre-commit install
     args:
       chdir: "{{ git_repo_parent }}/{{ item.local_dir }}"
+      creates: "{{ git_repo_parent }}/{{ item.local_dir }}/.git/hooks/pre-commit"
     when: file.stat.exists
-    changed_when: false
