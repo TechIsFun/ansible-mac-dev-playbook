@@ -13,3 +13,7 @@
    path: "{{ git_repo_parent }}/{{ item.local_dir }}"
    state: absent
   with_items: "{{ git_remove_repo_list }}"
+
+- name: Ensure pre-commit is installed when required
+  include_tasks: "git-pre-commit-install.yml"
+  with_items: "{{ git_repo_list }}"
