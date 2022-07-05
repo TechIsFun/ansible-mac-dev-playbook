@@ -82,7 +82,7 @@ homebrew_folders_additional: []
 
 # Jenv
 jenv_root: ~/.jenv
-jenv_default_jdk: 11
+jenv_default_jdk: zulu-jdk11
 jenv_jdks:
   - version: zulu-jdk11
   - version: zulu-jdk8
