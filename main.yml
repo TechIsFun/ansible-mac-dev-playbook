@@ -24,8 +24,8 @@
     # - import_tasks: tasks/android.yml
     #  tags: ['java', 'android', 'flutter']
 
-    # - import_tasks: tasks/flutter.yml
-    #  tags: ['flutter']
+    - import_tasks: tasks/flutter.yml
+      tags: ['flutter']
 
     # - import_tasks: tasks/one_password.yml
 
