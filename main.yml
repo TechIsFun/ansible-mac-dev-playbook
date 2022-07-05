@@ -22,7 +22,7 @@
     #  tags: ['aws']
 
     - import_tasks: tasks/android.yml
-      tags: ['java', 'android', 'flutter']
+      tags: ['android', 'flutter']
 
     - import_tasks: tasks/flutter.yml
       tags: ['flutter']

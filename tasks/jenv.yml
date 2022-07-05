@@ -23,16 +23,14 @@
     state: directory
     mode: 0755
 
-- name: Ensure selected JDK versions are installed
-  block:
-    - name: "Install {{ item }}"
-      homebrew_cask:
-        name: "{{ item }}"
-        state: present
-      with_items: "{{ jenv_jdks }}"
+- name: Ensure JDKs are installed
+  homebrew_cask:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ jenv_jdks }}"
 
 - name: Get available JDKs
-  command: jenv versions
+  command: ls -1 /Library/Java/JavaVirtualMachines/
   register: jdks
   ignore_errors: true
   changed_when: false
@@ -50,9 +48,9 @@
   changed_when: "'already' not in result.stdout"
   failed_when: "result.rc != 0 and 'already' not in result.stdout"
 
-- name: "Ensure JDK {{ jenv_default_jdk }} is default"
-  command: "jenv global {{ jenv_default_jdk|quote }}"
-  changed_when: false
+#- name: "Ensure JDK {{ jenv_default_jdk }} is default"
+#  command: "jenv global {{ jenv_default_jdk|quote }}"
+#  changed_when: false
 
 - name: Ensure shims are updated
   command: jenv rehash
