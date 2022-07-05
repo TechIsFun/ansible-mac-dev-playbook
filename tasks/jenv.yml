@@ -25,14 +25,14 @@
 
 - name: Ensure selected JDK versions are installed
   block:
-    - name: "Install {{ item.version }}"
+    - name: "Install {{ item }}"
       homebrew_cask:
-        name: "{{ item.version }}"
+        name: "{{ item }}"
         state: present
       with_items: "{{ jenv_jdks }}"
 
 - name: Get available JDKs
-  command: ls -1 /Library/Java/JavaVirtualMachines/
+  command: jenv versions
   register: jdks
   ignore_errors: true
   changed_when: false
