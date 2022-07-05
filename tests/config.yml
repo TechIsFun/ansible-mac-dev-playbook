@@ -28,6 +28,7 @@ homebrew_taps:
   - homebrew/cask-drivers
 
 homebrew_cask_apps:
+  - android-sdk
   - firefox
   - licecap
   - vagrant
