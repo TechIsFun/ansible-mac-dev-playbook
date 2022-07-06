@@ -48,9 +48,9 @@
   changed_when: "'already' not in result.stdout"
   failed_when: "result.rc != 0 and 'already' not in result.stdout"
 
-# - name: "Ensure JDK {{ jenv_default_jdk }} is default"
-#  command: "jenv global {{ jenv_default_jdk|quote }}"
-#  changed_when: false
+- name: "Ensure JDK {{ jenv_default_jdk }} is default"
+  command: "jenv global {{ jenv_default_jdk|quote }}"
+  changed_when: false
 
 - name: Ensure shims are updated
   command: jenv rehash

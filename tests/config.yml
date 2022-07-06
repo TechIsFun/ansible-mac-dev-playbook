@@ -61,3 +61,11 @@ crontab_unwanted_entries: []
 crontab_daily_entries: []
 crontab_weekly_entries: []
 crontab_entries_log: ">/tmp/crontab.log 2>/tmp/crontab_err.log"
+
+# Jenv
+jenv_root: ~/.jenv
+jenv_default_jdk: 15.0
+jenv_jdks:
+  - zulu-jdk15
+  - zulu-jdk11
+  - zulu-jdk8
