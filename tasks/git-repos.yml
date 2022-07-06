@@ -17,3 +17,10 @@
 - name: Ensure pre-commit is installed when required
   include_tasks: "git-pre-commit-install.yml"
   with_items: "{{ git_repo_list }}"
+
+- name: Ensure repo links are created
+  ansible.builtin.file:
+    src: "{{ git_repo_parent }}/{{ item.source }}"
+    dest: '{{ item.dest }}'
+    state: link
+  with_items: "{{ git_repo_links }}"
