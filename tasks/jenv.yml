@@ -56,25 +56,29 @@
   command: "jenv global {{ jenv_default_jdk|quote }}"
   changed_when: false
 
-- name: Ensure bash_profile exists
-  command: "touch /Users/{{ ansible_user_id }}/.bash_profile"
+- name: Ensure bash_profile/zshrc exists
+  command: "touch /Users/{{ ansible_user_id }}/{{ item }}"
   args:
-    creates: "/Users/{{ ansible_user_id }}/.bash_profile"
+    creates: "/Users/{{ ansible_user_id }}/{{ item }}"
+  with_items:
+    - ".bash_profile"
+    - ".zshrc"
 
-- name: Ensure jenv is initialized in bash_profile
+- name: Ensure jenv PATH is set
   lineinfile:
-    path: "/Users/{{ ansible_user_id }}/.bash_profile"
-    line: 'eval "$(jenv init -)"'
+    path: "/Users/{{ ansible_user_id }}/{{ item }}"
+    line: 'export PATH="$HOME/.jenv/bin:$PATH"'
+  with_items:
+    - ".bash_profile"
+    - ".zshrc"
 
-- name: Ensure zshrc exists
-  command: "touch /Users/{{ ansible_user_id }}/.zshrc"
-  args:
-    creates: "/Users/{{ ansible_user_id }}/.zshrc"
-
-- name: Ensure jenv is initialized in zshrc
+- name: Ensure jenv is initialized
   lineinfile:
-    path: "/Users/{{ ansible_user_id }}/.zshrc"
+    path: "/Users/{{ ansible_user_id }}/{{ item }}"
     line: 'eval "$(jenv init -)"'
+  with_items:
+    - ".bash_profile"
+    - ".zshrc"
 
 - name: Ensure JAVA_HOME is exposed automatically
   shell: $SHELL -lc "source /Users/{{ ansible_user_id }}/.bash_profile && jenv enable-plugin export"

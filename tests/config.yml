@@ -68,4 +68,3 @@ jenv_default_jdk: 15.0
 jenv_jdks:
   - zulu-jdk15
   - zulu-jdk11
-
