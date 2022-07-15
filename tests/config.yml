@@ -45,10 +45,10 @@ homebrew_cask_uninstalled_apps: []
 #
 git_repo_parent: ~/repositories
 git_repo_list:
-  - {repo: https://github.com/TechIsFun/template-android-library.git, local_dir: template-android-library, branch: main}
+  - {repo: "https://github.com/TechIsFun/template-android-library.git", local_dir: "template-android-library", branch: "main"}
 git_remove_repo_list: []
 git_repo_links:
-  - { source: "template-android-library", dest: "/tmp/template-android-library-link" }
+  - {source: "template-android-library", dest: "/tmp/template-android-library-link"}
 
 #
 # SSH Hosts
