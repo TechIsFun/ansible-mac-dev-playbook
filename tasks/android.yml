@@ -17,10 +17,11 @@
   tags: ['android']
 
 - name: Ensure JDK is set
-  command: jenv local 15.0
+  command: jenv local 11.0.15
   args:
     chdir: android-architecture-samples
     creates: .java-version
+  tags: ['android']
 
 - name: Ensure that Android app can be compiled
   command: ./gradlew assembleDebug
