@@ -93,7 +93,7 @@ jenv_jdks:
 #
 git_repo_parent: ~/repositories
 git_repo_list:
-  - {repo: git@github.com:TechIsFun/template-android-library.git, local_dir: template-android-library, branch: main}
+  - {repo: "git@github.com:TechIsFun/template-android-library.git", local_dir: template-android-library, branch: main}
 git_remove_repo_list: []
 git_repo_links: []
 
@@ -112,3 +112,12 @@ crontab_daily_entries:
 crontab_weekly_entries:
   - {name: "Cleaup Xcode device data", job: "/usr/bin/xcrun simctl delete unavailable"}
 crontab_entries_log: "> /tmp/crontab.log 2> /tmp/crontab_err.log"
+
+#
+# NPM
+#
+npm_global_packages:
+  - "@openapitools/openapi-generator-cli"
+  - firebase-tools
+
+npm_unwanted_packages: []

@@ -15,6 +15,9 @@
     # - import_tasks: tasks/ohmyzsh.yml
     #  tags: ['zsh']
 
+    - import_tasks: tasks/npm.yml
+      tags: ['npm']
+
     - import_tasks: tasks/jenv.yml
       tags: ['java', 'android', 'flutter']
 

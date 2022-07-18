@@ -70,3 +70,13 @@ jenv_default_jdk: 15.0
 jenv_jdks:
   - zulu-jdk15
   - zulu-jdk11
+
+#
+# NPM
+#
+npm_global_packages:
+  - firebase-tools
+  - "@openapitools/openapi-generator-cli"
+
+npm_unwanted_packages:
+  - coffee-script
