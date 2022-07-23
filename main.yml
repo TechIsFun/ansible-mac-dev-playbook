@@ -1,9 +1,6 @@
 ---
 - hosts: all
 
-  vars_files:
-    - default.config.yml
-
   pre_tasks:
     - name: Include playbook configuration.
       include_vars: "{{ item }}"
@@ -33,6 +30,9 @@
     # - import_tasks: tasks/one_password.yml
 
     - import_tasks: tasks/dock.yml
+      tags: ['osx']
+
+    - import_tasks: tasks/time-machine.yml
       tags: ['osx']
 
     # - name: Install Vundle

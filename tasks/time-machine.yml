@@ -1,0 +1,24 @@
+---
+- name: Ensure asimov is installed
+  community.general.homebrew:
+    name: asimov
+    state: latest
+
+- name: Ensure asimov service is started
+  ansible.builtin.command: brew services start asimov
+  become: true
+  ignore_errors: true
+
+- name: Ensure unwanted folders are excluded from Time Machine backup
+  ansible.builtin.command: tmutil addexclusion "{{ item }}"
+  with_items:
+    - "/Users/{{ ansible_user_id }}/fvm"
+    - "/Users/{{ ansible_user_id }}/.pub-cache"
+    - "/Users/{{ ansible_user_id }}/.cache"
+    - "/Users/{{ ansible_user_id }}/.gradle/caches"
+    - "/Users/{{ ansible_user_id }}/.gradle/wrapper"
+    - "/Users/{{ ansible_user_id }}/.m2"
+    - "/Users/{{ ansible_user_id }}/Google Drive"
+    - "/Users/{{ ansible_user_id }}/Dropbox"
+    - "/Users/{{ ansible_user_id }}/.cocoapods"
+    - "/Users/{{ ansible_user_id }}/tmp"
