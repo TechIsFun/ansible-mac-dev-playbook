@@ -2,7 +2,7 @@
 - name: Ensure npm is installed
   community.general.homebrew:
     name: node
-    state: present
+    state: latest
 
 - name: Ensure global npm packages are installed and updated
   npm:

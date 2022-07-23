@@ -2,3 +2,6 @@
 skip_list:
   - experimental
   - fqcn-builtins
+
+warn_list:
+  - package-latest

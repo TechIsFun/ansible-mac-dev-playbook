@@ -8,9 +8,11 @@
   ansible.builtin.command: brew services start asimov
   become: true
   ignore_errors: true
+  changed_when: false
 
 - name: Ensure unwanted folders are excluded from Time Machine backup
   ansible.builtin.command: tmutil addexclusion "{{ item }}"
+  changed_when: false
   with_items:
     - "/Users/{{ ansible_user_id }}/fvm"
     - "/Users/{{ ansible_user_id }}/.pub-cache"
