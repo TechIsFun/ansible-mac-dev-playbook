@@ -24,7 +24,7 @@
   tags: ['android']
 
 - name: Ensure that Android app can be compiled
-  command: ./gradlew assembleDebug
+  shell: source "~/.bash_profile" && ./gradlew assembleDebug
   args:
     chdir: android-architecture-samples
   changed_when: false
