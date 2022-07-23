@@ -43,6 +43,11 @@ jobs:
       - name: Check out the codebase.
         uses: actions/checkout@v3
 
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+
       - name: Uninstall GitHub Actions' built-in Homebrew.
         run: tests/uninstall-homebrew.sh
 
