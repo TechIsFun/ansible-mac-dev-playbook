@@ -2,18 +2,18 @@
 - name: Ensure npm is installed
   community.general.homebrew:
     name: node
-    state: latest
+    state: present
 
 - name: Ensure global npm packages are installed and updated
   npm:
     name: "{{ item }}"
-    global: yes
+    global: true
     state: latest
   with_items: "{{ npm_global_packages }}"
 
 - name: Ensure unwanted npm packages are not installed
   npm:
     name: "{{ item }}"
-    global: yes
+    global: true
     state: absent
   with_items: "{{ npm_unwanted_packages }}"
