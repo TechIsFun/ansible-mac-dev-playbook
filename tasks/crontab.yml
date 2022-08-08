@@ -19,3 +19,10 @@
     job: "{{ item.job }}"
     special_time: weekly
   with_items: "{{ crontab_weekly_entries }}"
+
+- name: Ensure 5 minutes crontab entries are set
+  cron:
+    name: "{{ item.name }}"
+    job: "{{ item.job }}"
+    minute: "*/5"
+  with_items: "{{ crontab_every_five_minutes_entries }}"

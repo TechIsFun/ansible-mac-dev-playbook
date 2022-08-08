@@ -1,5 +1,7 @@
 ---
 
+emacs_org_dir: "/Users/{{ ansible_user_id }}/emacs-org/"
+
 # Dotfile
 configure_dotfiles: false
 
@@ -62,6 +64,7 @@ ssh_hosts:
 crontab_unwanted_entries: []
 crontab_daily_entries: []
 crontab_weekly_entries: []
+crontab_every_five_minutes_entries: []
 crontab_entries_log: ">/tmp/crontab.log 2>/tmp/crontab_err.log"
 
 # Jenv
