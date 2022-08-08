@@ -80,3 +80,10 @@ npm_global_packages:
 
 npm_unwanted_packages:
   - coffee-script
+
+#
+# GO
+#
+go_bin_path: "/Users/{{ ansible_user_id }}/go/bin"
+go_packages: []
+go_unwanted_packages: []
