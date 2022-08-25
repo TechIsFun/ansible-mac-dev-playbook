@@ -4,3 +4,4 @@
 roles*
 node_modules
 config.yml
+/ansible-private-config.yml
