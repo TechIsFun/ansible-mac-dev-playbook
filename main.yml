@@ -6,11 +6,16 @@
       include_vars: "{{ item }}"
       with_fileglob:
         - "{{ playbook_dir }}/config.yml"
+        - "{{ playbook_dir }}/ansible-private-config.yml"
       tags: ['always']
 
   tasks:
     # - import_tasks: tasks/ohmyzsh.yml
     #  tags: ['zsh']
+
+    - import_tasks: tasks/python.yml
+      tags:
+        - python
 
     - import_tasks: tasks/npm.yml
       tags: ['npm']

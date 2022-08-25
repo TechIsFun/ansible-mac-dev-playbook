@@ -1,6 +1,9 @@
 ---
 
 emacs_org_dir: "/Users/{{ ansible_user_id }}/emacs-org/"
+# python
+pip_install_packages:
+  - docker
 
 # Dotfile
 configure_dotfiles: false
