@@ -3,13 +3,13 @@
 - name: Ensure PATH is set
   ansible.builtin.cron:
     name: PATH
-    env: yes
+    env: true
     job: "/usr/bin:/bin:/usr/local/bin"
 
 - name: Ensure HOMEBREW_NO_CLEANUP_FORMULAE is set
   ansible.builtin.cron:
     name: HOMEBREW_NO_CLEANUP_FORMULAE
-    env: yes
+    env: true
     job: "{{ homebrew_installed_packages | join(',') }}"
 
 - name: Ensure unwanted crontab entries are removed
