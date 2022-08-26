@@ -4,7 +4,7 @@
   ansible.builtin.shell: |
     eval "$(jenv init -)" \
     && jenv shell 1.8 \
-    && sdkmanager --update
+    && /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --update
   changed_when: false
   check_mode: false
   args:
