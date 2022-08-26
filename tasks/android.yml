@@ -22,7 +22,9 @@
   tags: ['android']
 
 - name: Ensure JDK 11 is set to make gradle work
-  command: jenv local 11.0.15
+  ansible.builtin.shell: |
+    jenv versions
+    jenv local 11.0
   args:
     chdir: android-architecture-samples
     creates: .java-version
