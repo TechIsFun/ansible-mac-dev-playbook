@@ -1,15 +1,71 @@
 ---
 
-# - name: Update Android SDK
+- name: Ensure latest version of sdkmanager is linked
+  ansible.builtin.file:
+    src: '/usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager'
+    dest: '/usr/local/bin/sdkmanager'
+    state: link
+    force: true
+  tags: ['android']
+
+- name: Update Android SDK
+  ansible.builtin.command: sdkmanager --update
+  changed_when: false
+  check_mode: false
+  tags: ['android']
+
+- name: Ensure wanted Android images are installed
+  ansible.builtin.command: "sdkmanager --install {{ item }}"
+  with_items: "{{ android_wanted_images }}"
+  changed_when: false
+  tags: ['android']
+
+- name: Ensure unwanted Android images are removed
+  ansible.builtin.command: "sdkmanager --uninstall {{ item }}"
+  with_items: "{{ android_unwanted_images }}"
+  changed_when: false
+  tags: ['android']
+
+# - name: Ensure wanted Android emulators are created
 #  ansible.builtin.shell: |
-#    eval "$(jenv init -)" \
-#    && jenv shell 1.8 \
-#    && /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --update
-#  changed_when: false
-#  check_mode: false
+#    echo no | avdmanager --silent create avd -n {{ item.name }} -k "{{ item.image }}"
+#  with_items: "{{ android_wanted_emulators }}"
 #  args:
-#    executable: /bin/bash
-#  tags: ['android']
+#    creates: "/Users/{{ ansible_user_id }}/.android/avd/{{ item.name }}.avd"
+#  tags: ['androidsdk']
+
+# - name: Ensure Android emulators configs are updated
+#  ansible.builtin.copy:
+#    src: "resources/android-avd-default-config.ini"
+#    dest: "/Users/{{ ansible_user_id }}/.android/avd/{{ item.name }}.avd/config.ini"
+#  with_items: "{{ android_wanted_emulators }}"
+#  tags: ['androidsdk']
+
+# - name: Ensure Emulator name is set in config file
+#  ansible.builtin.blockinfile:
+#    path: "/Users/{{ ansible_user_id }}/.android/avd/{{ item.name }}.avd/config.ini"
+#    marker: "# ANSIBLE MANAGED BLOCK: avd id and name"
+#    block: |
+#      AvdId = {{ item.name }}
+#      avd.ini.displayname = {{ item.name }}
+#  with_items: "{{ android_wanted_emulators }}"
+#  tags: ['androidsdk']
+
+# - name: Find unwanted Android emulators related files
+#  find:
+#    paths: "/Users/{{ ansible_user_id }}/.android/avd/"
+#    patterns: "{{ item.name }}.*"
+#    use_regex: true
+#  register: wildcard_android_emu_files_to_delete
+#  with_items: "{{ android_unwanted_emulators }}"
+#  tags: ['androidsdk']
+
+# - name: Remove unwanted Android emulators related files
+#  ansible.builtin.file:
+#    path: "{{ item }}"
+#    state: absent
+#  with_items: "{{ wildcard_android_emu_files_to_delete }}"
+#  tags: ['androidsdk']
 
 # Clone Android sample app repo and check that app can be built
 - name: Clone architecture-samples repo.
@@ -19,6 +75,7 @@
     dest: android-architecture-samples
     update: false
     depth: 1
+  when: android_compile_sample_app
   tags: ['android']
 
 - name: Ensure JDK 11 is set to make gradle work
@@ -28,6 +85,7 @@
   args:
     chdir: android-architecture-samples
     creates: .java-version
+  when: android_compile_sample_app
   tags: ['android']
 
 - name: Ensure that Android app can be compiled
@@ -37,4 +95,5 @@
   changed_when: false
   # args:
   #  creates: "/Users/{{ ansible_user_id }}/android-architecture-samples/app/build/outputs/apk"
+  when: android_compile_sample_app
   tags: ['android']

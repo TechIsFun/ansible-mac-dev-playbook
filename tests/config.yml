@@ -1,6 +1,14 @@
 ---
 
 emacs_org_dir: "/Users/{{ ansible_user_id }}/emacs-org/"
+#
+# Android
+#
+android_compile_sample_app: true
+android_wanted_images:
+  - "system-images;android-33;google_apis_playstore;x86_64"
+android_unwanted_images: []
+
 # python
 pip_executable: pip3
 pip_install_packages:
