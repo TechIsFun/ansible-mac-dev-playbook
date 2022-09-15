@@ -1,6 +1,8 @@
 ---
 
-emacs_org_dir: "/Users/{{ ansible_user_id }}/emacs-org/"
+organize_config_file: "../organize/config.yml"
+emacs_org_dir: "/Users/{{ ansible_user_id }}/Dropbox/emacs-org-2"
+
 #
 # Android
 #
@@ -51,6 +53,7 @@ homebrew_cask_apps:
   - iterm2
   - slack
   - microsoft-teams
+  - google-drive
 
 homebrew_cask_uninstalled_apps: []
 
@@ -74,6 +77,7 @@ ssh_hosts:
 # Crontab
 #
 crontab_unwanted_entries: []
+crontab_hourly_entries: []
 crontab_daily_entries: []
 crontab_weekly_entries: []
 crontab_every_five_minutes_entries: []
