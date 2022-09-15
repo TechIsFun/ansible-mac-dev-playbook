@@ -18,6 +18,13 @@
     state: absent
   with_items: "{{ crontab_unwanted_entries }}"
 
+- name: Ensure hourly crontab entries are set
+  cron:
+    name: "{{ item.name }}"
+    job: "{{ item.job }}"
+    special_time: hourly
+  with_items: "{{ crontab_hourly_entries }}"
+
 - name: Ensure daily crontab entries are set
   cron:
     name: "{{ item.name }}"
