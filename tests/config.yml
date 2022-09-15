@@ -51,6 +51,7 @@ homebrew_cask_apps:
   - iterm2
   - slack
   - microsoft-teams
+  - google-drive
 
 homebrew_cask_uninstalled_apps: []
 
