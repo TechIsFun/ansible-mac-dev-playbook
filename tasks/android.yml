@@ -1,11 +1,14 @@
 ---
 
-- name: Ensure latest version of sdkmanager is linked
+- name: Ensure latest version of sdk binaries are linked
   ansible.builtin.file:
-    src: '/usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager'
-    dest: '/usr/local/bin/sdkmanager'
+    src: "/usr/local/share/android-sdk/cmdline-tools/latest/bin/{{ item }}"
+    dest: "/usr/local/bin/{{ item }}"
     state: link
     force: true
+  with_items:
+    - sdkmanager
+    - avdmanager
   tags: ['android']
 
 - name: Update Android SDK
