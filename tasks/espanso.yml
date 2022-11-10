@@ -12,3 +12,15 @@
   changed_when: false
   notify:
     - Restart espanso
+
+- name: Ensure espanso matches file is linked
+  ansible.builtin.file:
+    src: '{{ dotfiles_repo_local_destination }}/espanso-base.yml'
+    dest: '{{ home }}/Library/Preferences/espanso/matches/base.yml'
+    state: link
+
+- name: Ensure espanso config file is linked
+  ansible.builtin.file:
+    src: '{{ dotfiles_repo_local_destination }}/espanso-config.yml'
+    dest: '{{ home }}/Library/Preferences/espanso/config/default.yml'
+    state: link
