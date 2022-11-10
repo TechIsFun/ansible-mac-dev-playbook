@@ -1,16 +1,20 @@
 ---
 
+# temporarily disabled
 - name: Debug folders structure
   ansible.builtin.debug:
     msg: "{{ item }}"
   with_items: "{{ home_folders }}"
+  when: false
 
+# temporarily disabled
 - name: Debug subelements
   ansible.builtin.debug:
     msg: "{{ item.0.name }}/{{ item.1.name }} -> {{ item.1.src }}"
   with_subelements:
     - "{{ home_folders }}"
     - links
+  when: false
 
 - name: Ensure home folders are present
   ansible.builtin.file:
@@ -19,6 +23,7 @@
   with_items:
     - "{{ home_folders }}"
 
+# temporarily disabled
 - name: Ensure subfolders are linked
   ansible.builtin.file:
     src: "{{ item.1.src }}"
@@ -27,12 +32,16 @@
   with_subelements:
     - "{{ home_folders }}"
     - links
+  when: false
 
+# temporarily disabled
 - name: Ensure organize config file exists
   ansible.builtin.file:
     path: "{{ dotfiles_repo_local_destination }}/.organize-config-generated.yml"
     state: touch
+  when: false
 
+# temporarily disabled
 - name: Ensure organize rules for files are configured
   ansible.builtin.blockinfile:
     path: "{{ dotfiles_repo_local_destination }}/.organize-config-generated.yml"
@@ -52,7 +61,9 @@
   with_subelements:
     - "{{ home_folders }}"
     - links
+  when: false
 
+# temporarily disabled
 - name: Ensure organize rules for directories are configured
   ansible.builtin.blockinfile:
     path: "{{ dotfiles_repo_local_destination }}/.organize-config-generated.yml"
@@ -72,3 +83,4 @@
   with_subelements:
     - "{{ home_folders }}"
     - links
+  when: false
