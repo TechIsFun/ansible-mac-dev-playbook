@@ -1,0 +1,5 @@
+tasks:
+  - name: install dependencies
+    init: |
+      pip3 install yamllint ansible ansible-lint
+      
