@@ -6,3 +6,4 @@ skip_list:
 warn_list:
   - package-latest
   - jinja[spacing]
+  - name[template]

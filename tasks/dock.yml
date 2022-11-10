@@ -1,7 +1,7 @@
 ---
 
 - name: Ensure dockutil is installed
-  homebrew:
+  community.general.homebrew:
     name: dockutil
     state: present
 

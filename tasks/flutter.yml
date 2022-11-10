@@ -1,19 +1,19 @@
 ---
 
 - name: Ensure Dart tap is tapped
-  homebrew_tap:
+  community.general.homebrew_tap:
     name: dart-lang/dart
     state: present
   tags: ['flutter']
 
 - name: Ensure FVM tap is tapped
-  homebrew_tap:
+  community.general.homebrew_tap:
     name: leoafarias/fvm
     state: present
   tags: ['flutter']
 
 - name: Ensure FVM is installed
-  homebrew:
+  community.general.homebrew:
     name: fvm
     state: present
   tags: ['flutter']
