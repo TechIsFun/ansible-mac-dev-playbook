@@ -1,7 +1,7 @@
 ---
 
 - name: Ensure aws-cli is installed
-  homebrew:
+  community.general.homebrew:
     name: awscli
     state: present
   tags: ['aws']

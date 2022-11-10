@@ -9,3 +9,4 @@ rules:
 ignore: |
   .github/stale.yml
   node_modules
+  python-venv

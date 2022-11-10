@@ -5,14 +5,14 @@
     state: latest
 
 - name: Ensure global npm packages are installed and updated
-  npm:
+  community.general.npm:
     name: "{{ item }}"
     global: true
     state: latest
   with_items: "{{ npm_global_packages }}"
 
 - name: Ensure unwanted npm packages are not installed
-  npm:
+  community.general.npm:
     name: "{{ item }}"
     global: true
     state: absent

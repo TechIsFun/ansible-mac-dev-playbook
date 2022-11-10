@@ -2,12 +2,12 @@
 # https://github.com/EiyuuZack/ansible-role-jenv
 
 - name: Ensure zulu jdk tap is tapped
-  homebrew_tap:
+  community.general.homebrew_tap:
     name: mdogan/zulu
     state: present
 
 - name: Ensure jenv is installed
-  homebrew:
+  community.general.homebrew:
     name: jenv
     state: present
 
@@ -24,7 +24,7 @@
     mode: 0755
 
 - name: Ensure JDKs are installed
-  homebrew_cask:
+  community.general.homebrew_cask:
     name: "{{ item }}"
     state: present
   with_items: "{{ jenv_jdks }}"

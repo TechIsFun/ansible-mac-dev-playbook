@@ -1,0 +1,14 @@
+tasks:
+
+  - name: Setup python virtualenv
+    init: |
+      python3 -m venv python-venv
+      source python-venv/bin/activate
+
+  - name: Install ansible
+    init: |
+      pip3 install yamllint ansible ansible-lint
+
+  - name: Install pre-commit
+    init: |
+      pip3 install pre-commit
