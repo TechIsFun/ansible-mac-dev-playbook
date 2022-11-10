@@ -1,0 +1,74 @@
+---
+
+- name: Debug folders structure
+  ansible.builtin.debug:
+    msg: "{{ item }}"
+  with_items: "{{ home_folders }}"
+
+- name: Debug subelements
+  ansible.builtin.debug:
+    msg: "{{ item.0.name }}/{{ item.1.name }} -> {{ item.1.src }}"
+  with_subelements:
+    - "{{ home_folders }}"
+    - links
+
+- name: Ensure home folders are present
+  ansible.builtin.file:
+    path: "/Users/{{ ansible_user_id }}/{{ item.name }}"
+    state: directory
+  with_items:
+    - "{{ home_folders }}"
+
+- name: Ensure subfolders are linked
+  ansible.builtin.file:
+    src: "{{ item.1.src }}"
+    dest: "/Users/{{ ansible_user_id }}/{{ item.0.name }}/{{ item.1.name }}"
+    state: link
+  with_subelements:
+    - "{{ home_folders }}"
+    - links
+
+- name: Ensure organize config file exists
+  ansible.builtin.file:
+    path: "{{ dotfiles_repo_local_destination }}/.organize-config-generated.yml"
+    state: touch
+
+- name: Ensure organize rules for files are configured
+  ansible.builtin.blockinfile:
+    path: "{{ dotfiles_repo_local_destination }}/.organize-config-generated.yml"
+    marker: "# ANSIBLE MANAGED BLOCK: Rule for {{ item.1.name }} files"
+    block: |
+      - name: Move {{ item.1.name }} related files
+        locations:
+          - ~/Downloads
+        filters:
+          - name:
+              contains: {{ item.1.matches }}
+            case_sensitive: false
+          - extension
+        actions:
+          - macos_tags: {{ item.1.tags }}
+          - move: "{{ item.0.name }}/{{ item.1.name }}/{name.lower()}.{extension.lower()}"
+  with_subelements:
+    - "{{ home_folders }}"
+    - links
+
+- name: Ensure organize rules for directories are configured
+  ansible.builtin.blockinfile:
+    path: "{{ dotfiles_repo_local_destination }}/.organize-config-generated.yml"
+    marker: "# ANSIBLE MANAGED BLOCK: Rule for {{ item.1.name }} directories"
+    block: |
+      - name: Move {{ item.1.name }} related directories
+        target: dirs
+        locations:
+          - ~/Downloads
+        filters:
+          - name:
+              contains: {{ item.1.matches }}
+            case_sensitive: false
+        actions:
+          - macos_tags: {{ item.1.tags }}
+          - move: "{{ item.0.name }}/{{ item.1.name }}/"
+  with_subelements:
+    - "{{ home_folders }}"
+    - links

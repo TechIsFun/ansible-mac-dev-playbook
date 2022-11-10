@@ -68,6 +68,12 @@
     - import_tasks: tasks/go.yml
       tags: ['go']
 
+    - import_tasks: tasks/home-folders.yml
+      tags: ['home']
+
+    - import_tasks: tasks/organize.yml
+      tags: ['organize']
+
     - import_tasks: tasks/crontab.yml
       tags: ['crontab']
 

@@ -1,0 +1,10 @@
+---
+
+- name: Ensure organize-tool is installed
+  ansible.builtin.pip:
+    name: "organize-tool[textract]"
+
+- name: Ensure default config file is removed
+  file:
+    path: "/Users/andrea/Library/Application Support/organize/config.yaml"
+    state: absent
