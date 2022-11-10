@@ -30,7 +30,7 @@ jobs:
       - name: Install test dependencies.
         run: |
           python3 -m venv ansible-venv
-          source ansible-env/bin/activate
+          source ansible-venv/bin/activate
           pip3 install yamllint ansible ansible-lint
 
       - name: Lint code.
@@ -54,7 +54,7 @@ jobs:
       - name: Setup python venv
         run: |
           python3 -m venv ansible-venv
-          source ansible-env/bin/activate
+          source ansible-venv/bin/activate
 
       - uses: actions/setup-java@v3
         with:
