@@ -35,6 +35,7 @@ jobs:
 
       - name: Lint code.
         run: |
+          source python-venv/bin/activate
           yamllint .
           ansible-lint
 
