@@ -45,6 +45,7 @@ homebrew_taps:
 
 homebrew_cask_apps:
   - android-sdk
+  - android-platform-tools
   - firefox
   - licecap
   - vagrant

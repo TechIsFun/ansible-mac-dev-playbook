@@ -1,30 +1,29 @@
 ---
 
-- name: Ensure latest version of sdk binaries are linked
-  ansible.builtin.file:
-    src: "/usr/local/share/android-sdk/cmdline-tools/latest/bin/{{ item }}"
-    dest: "/usr/local/bin/{{ item }}"
-    state: link
-    force: true
-  with_items:
-    - sdkmanager
-    - avdmanager
-  tags: ['android']
+# - name: Ensure latest version of sdk binaries are linked
+#  ansible.builtin.file:
+#    src: "/usr/local/share/android-sdk/cmdline-tools/latest/bin/{{ item }}"
+#    dest: "/usr/local/bin/{{ item }}"
+#    state: link
+#    force: true
+#  with_items:
+#    - avdmanager
+#  tags: ['android']
 
 - name: Update Android SDK
-  ansible.builtin.command: sdkmanager --update
+  ansible.builtin.command: /usr/local/bin/sdkmanager --update
   changed_when: false
   check_mode: false
   tags: ['android']
 
 - name: Ensure wanted Android images are installed
-  ansible.builtin.command: "sdkmanager --install {{ item }}"
+  ansible.builtin.command: "/usr/local/bin/sdkmanager --install {{ item }}"
   with_items: "{{ android_wanted_images }}"
   changed_when: false
   tags: ['android']
 
 - name: Ensure unwanted Android images are removed
-  ansible.builtin.command: "sdkmanager --uninstall {{ item }}"
+  ansible.builtin.command: "/usr/local/bin/sdkmanager --uninstall {{ item }}"
   with_items: "{{ android_unwanted_images }}"
   changed_when: false
   tags: ['android']
