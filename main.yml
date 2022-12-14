@@ -41,6 +41,9 @@
       tags: ['osx']
       become: false
 
+    - import_tasks: tasks/osx-spotlight.yml
+      tags: ['osx-spotlight']
+
     # - name: Install Vundle
     #  git:
     #    repo: https://github.com/VundleVim/Vundle.vim.git

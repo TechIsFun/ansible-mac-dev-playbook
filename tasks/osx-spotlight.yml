@@ -1,0 +1,34 @@
+---
+
+- name: Ensure spolight exclusions are configured
+  ansible.builtin.shell: |
+    if grep -q "{{ item }}" "/System/Volumes/Data/.Spotlight-V100/VolumeConfiguration.plist"; then
+      echo {{ item }} already configured
+    else
+      /usr/libexec/PlistBuddy -c "Add :Exclusions: string {{item}}" /System/Volumes/Data/.Spotlight-V100/VolumeConfiguration.plist
+    fi
+  become: true
+  changed_when: false
+  when: ansible_os_family == "Darwin"
+  loop:
+    - "{{ home }}/fvm"
+    - "{{ home }}/.gradle"
+    - "{{ home }}/.m2"
+    - "{{ home }}/.dart"
+    - "{{ home }}/.dartServer"
+    - "{{ home }}/Library/Caches"
+    - "{{ home }}/Library/Containers"
+    - "{{ home }}/.konan"
+    - "{{ home }}/.npm"
+    - "{{ home }}/.cache"
+    - "{{ home }}/.pub-cache"
+    - "{{ home }}/.cocoapods"
+    - "{{ home }}/.bundle"
+    - "{{ home }}/.dropbox"
+    - "{{ home }}/.ssh"
+    - "{{ home }}/.vagrant.d"
+    - "{{ home }}/.gnupg"
+    - "{{ home }}/.docker"
+    - "{{ home }}/.doppler"
+    - "{{ home }}/.fastlane"
+    - "{{ home }}/.aws"
