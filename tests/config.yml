@@ -50,7 +50,6 @@ homebrew_cask_apps:
   - licecap
   - vagrant
   - virtualbox
-  - virtualbox-extension-pack
   - iterm2
   - slack
   - microsoft-teams
