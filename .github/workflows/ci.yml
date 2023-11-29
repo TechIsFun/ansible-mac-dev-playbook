@@ -57,7 +57,7 @@ jobs:
           python3 -m venv python-venv
           source python-venv/bin/activate
 
-      - uses: actions/setup-java@v3
+      - uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '11'
