@@ -12,7 +12,8 @@ This playbook installs and configures most of the software I use on my Mac for w
   2. Install Ansible using `brew install ansible` or by following [Ansible Install Guide](https://docs.ansible.com/ansible/latest/installation_guide/index.html):
 
   3. Clone or download this repository to your local drive.
-  4. Run `ansible-playbook main.yml --ask-become-pass` inside this directory. Enter your macOS account password when prompted for the 'BECOME' password.
+  4. Run `ansible-galaxy install -r requirements.yml`
+  5. Run `ansible-playbook main.yml --ask-become-pass` inside this directory. Enter your macOS account password when prompted for the 'BECOME' password.
 
 > Note: If some Homebrew commands fail, you might need to agree to Xcode's license or fix some other Brew issue. Run `brew doctor` to see if this is the case.
 
