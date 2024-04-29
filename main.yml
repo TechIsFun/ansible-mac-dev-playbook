@@ -39,7 +39,6 @@
 
     - import_tasks: tasks/time-machine.yml
       tags: ['osx']
-      become: false
 
     - import_tasks: tasks/osx-spotlight.yml
       tags: ['osx-spotlight']
