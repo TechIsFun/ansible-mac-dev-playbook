@@ -11,3 +11,4 @@
       chdir: "{{ git_repo_parent }}/{{ item.local_dir }}"
       creates: "{{ git_repo_parent }}/{{ item.local_dir }}/.git/hooks/pre-commit"
     when: file.stat.exists
+  ignore_errors: true
