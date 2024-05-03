@@ -10,6 +10,8 @@
     global: true
     state: latest
   with_items: "{{ npm_global_packages }}"
+  environment:
+    PUPPETEER_SKIP_DOWNLOAD: 'true'
 
 - name: Ensure unwanted npm packages are not installed
   community.general.npm:
