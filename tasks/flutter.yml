@@ -44,5 +44,4 @@
     - fvm flutter pub get
     - fvm flutter analyze
     - fvm flutter test
-    - fvm flutter build apk --debug
   tags: ['flutter']
