@@ -44,10 +44,11 @@ homebrew_taps:
   - homebrew/cask-drivers
 
 homebrew_cask_apps:
-  - android-sdk
-  - android-platform-tools
+  - docker
+  - sublimet-text
   - firefox
-  - licecap
+  - jetbrains-toolbox
+  - arc
   - vagrant
   - virtualbox
   - iterm2
