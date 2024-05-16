@@ -4,13 +4,21 @@ repos:
     rev: v4.4.0
     hooks:
       - id: check-yaml
-        args: [--ignore-path, ./.github/workflows/ci.yml]
+        exclude: |
+            (?x)^(
+                ./.github/workflows/ci.yml
+            )$
       - id: end-of-file-fixer
       - id: trailing-whitespace
+
   - repo: https://github.com/ansible-community/ansible-lint
     rev: v6.17.2
     hooks:
       - id: ansible-lint
+        exclude: |
+            (?x)^(
+                .pre-commit-config.yaml
+            )$
   - repo: https://github.com/zricethezav/gitleaks
     rev: v8.17.0
     hooks:
