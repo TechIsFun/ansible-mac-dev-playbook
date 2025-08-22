@@ -10,17 +10,18 @@
     - mac-symbols
     - cht
   changed_when: false
+  failed_when: false
   notify:
     - Restart espanso
 
 - name: Ensure espanso matches file is linked
   ansible.builtin.file:
-    src: '{{ dotfiles_repo_local_destination }}/espanso-base.yml'
-    dest: '{{ lookup('ansible.builtin.env', 'HOME') }}/Library/Preferences/espanso/matches/base.yml'
+    src: "{{ dotfiles_repo_local_destination }}/espanso-base.yml"
+    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/Library/Preferences/espanso/matches/base.yml"
     state: link
 
 - name: Ensure espanso config file is linked
   ansible.builtin.file:
-    src: '{{ dotfiles_repo_local_destination }}/espanso-config.yml'
-    dest: '{{ lookup('ansible.builtin.env', 'HOME') }}/Library/Preferences/espanso/config/default.yml'
+    src: "{{ dotfiles_repo_local_destination }}/espanso-config.yml"
+    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/Library/Preferences/espanso/config/default.yml"
     state: link
