@@ -7,29 +7,36 @@
 
 - name: Configure Dock
   tags: ['dock']
-  failed_when: false
   block:
     - name: Remove all items
       command: dockutil --remove all --no-restart
       changed_when: false
+      failed_when: false
     - name: Add Launchpad item
       command: dockutil --add /System/Applications/Launchpad.app --no-restart
       changed_when: false
+      failed_when: false
     - name: Add Brave item
       command: dockutil --add "/Applications/Brave Browser.app" --no-restart
       changed_when: false
+      failed_when: false
     - name: Add Sublime Text item
       command: dockutil --add "/Applications/Sublime Text.app" --no-restart
       changed_when: false
+      failed_when: false
     - name: Add iTerm item
       command: dockutil --add /Applications/iTerm.app --no-restart
       changed_when: false
+      failed_when: false
     - name: Add Slack item
       command: dockutil --add /Applications/Slack.app --label "Slack" --no-restart
       changed_when: false
+      failed_when: false
     - name: Add Downloads item
       command: dockutil --add ~/Downloads/ --label "Downloads" --view fan --display stack --no-restart
       changed_when: false
+      failed_when: false
     - name: Add Screenshots item
       command: dockutil --add ~/Pictures/Screenshots/ --label "Screenshots" --view fan --display stack
       changed_when: false
+      failed_when: false
