@@ -1,7 +1,7 @@
 ---
 
-organize_config_file: "../organize/config.yml"
-emacs_org_dir: "/Users/{{ ansible_user_id }}/Dropbox/emacs-org-2"
+
+emacs_org_dir: "/Users/{{ ansible_user_id }}/emacs-org"
 
 #
 # Android
