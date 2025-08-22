@@ -4,6 +4,7 @@
   ansible.builtin.file:
     path: "{{ go_bin_path }}"
     state: directory
+    mode: '0755'
 
 - name: Ensure go packages are installed
   ansible.builtin.command: go install "{{ item.package }}"

@@ -6,6 +6,8 @@
     state: present
 
 - name: Configure Dock
+  tags: ['dock']
+  failed_when: false
   block:
     - name: Remove all items
       command: dockutil --remove all --no-restart
@@ -31,5 +33,3 @@
     - name: Add Screenshots item
       command: dockutil --add ~/Pictures/Screenshots/ --label "Screenshots" --view fan --display stack
       changed_when: false
-  tags: ['dock']
-  ignore_errors: true

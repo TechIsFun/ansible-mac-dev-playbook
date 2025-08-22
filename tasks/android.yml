@@ -4,14 +4,16 @@
   file:
     path: ~/.android
     state: directory
-  ignore_errors: true
+    mode: '0755'
+  failed_when: false
   tags: ['android']
 
 - name: Ensure ~/.android/repositories.cfg exists
   copy:
     content: ""
     dest: ~/.android/repositories.cfg
-  ignore_errors: true
+    mode: '0644'
+  failed_when: false
   tags: ['android']
 
 # Clone Android sample app repo and check that app can be built

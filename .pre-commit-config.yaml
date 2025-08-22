@@ -1,7 +1,7 @@
 ---
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v6.0.0
     hooks:
       - id: check-yaml
         exclude: |
@@ -12,7 +12,7 @@ repos:
       - id: trailing-whitespace
 
   - repo: https://github.com/ansible-community/ansible-lint
-    rev: v6.17.2
+    rev: v25.8.2
     hooks:
       - id: ansible-lint
         exclude: |
@@ -20,11 +20,11 @@ repos:
                 .pre-commit-config.yaml
             )$
   - repo: https://github.com/zricethezav/gitleaks
-    rev: v8.17.0
+    rev: v8.28.0
     hooks:
       - id: gitleaks
   - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
-    rev: v9.5.0
+    rev: v9.22.0
     hooks:
       # pre-commit install --hook-type commit-msg
       - id: commitlint

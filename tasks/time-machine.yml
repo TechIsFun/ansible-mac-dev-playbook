@@ -5,11 +5,11 @@
     state: latest
 
 - name: Ensure asimov service is started
-  ansible.builtin.command: brew services start asimov
-  become: true
-  ignore_errors: true
-  changed_when: false
   when: ansible_os_family == "Darwin"
+  become: true
+  ansible.builtin.command: brew services start asimov
+  changed_when: false
+  failed_when: false
 
 - name: Ensure unwanted folders are excluded from Time Machine backup
   ansible.builtin.command: tmutil addexclusion "{{ item }}"
@@ -25,4 +25,4 @@
     - "/Users/{{ ansible_user_id }}/Dropbox"
     - "/Users/{{ ansible_user_id }}/.cocoapods"
     - "/Users/{{ ansible_user_id }}/tmp"
-  ignore_errors: true
+  failed_when: false

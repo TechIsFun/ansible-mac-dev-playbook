@@ -5,7 +5,7 @@
     if grep -q "{{ item }}" "/System/Volumes/Data/.Spotlight-V100/VolumeConfiguration.plist"; then
       echo {{ item }} already configured
     else
-      /usr/libexec/PlistBuddy -c "Add :Exclusions: string {{item}}" /System/Volumes/Data/.Spotlight-V100/VolumeConfiguration.plist
+      /usr/libexec/PlistBuddy -c "Add :Exclusions: string {{ item }}" /System/Volumes/Data/.Spotlight-V100/VolumeConfiguration.plist
     fi
   become: true
   changed_when: false

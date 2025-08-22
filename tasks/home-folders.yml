@@ -20,6 +20,7 @@
   ansible.builtin.file:
     path: "/Users/{{ ansible_user_id }}/{{ item.name }}"
     state: directory
+    mode: '0755'
   with_items:
     - "{{ home_folders }}"
 
@@ -39,6 +40,7 @@
   ansible.builtin.file:
     path: "{{ dotfiles_repo_local_destination }}/.organize-config-generated.yml"
     state: touch
+    mode: '0644'
   when: false
 
 # temporarily disabled

@@ -1,5 +1,6 @@
 ---
-- hosts: all
+- name: Configure macOS development environment
+  hosts: all
 
   pre_tasks:
     - name: Include playbook configuration.
@@ -13,34 +14,42 @@
     # - import_tasks: tasks/ohmyzsh.yml
     #  tags: ['zsh']
 
-    - import_tasks: tasks/python.yml
+    - name: Configure Python environment
+      import_tasks: tasks/python.yml
       tags:
         - python
 
-    - import_tasks: tasks/npm.yml
+    - name: Configure NPM environment
+      import_tasks: tasks/npm.yml
       tags: ['npm']
 
-    - import_tasks: tasks/jenv.yml
+    - name: Configure Java environment with jenv
+      import_tasks: tasks/jenv.yml
       tags: ['java', 'android', 'flutter']
 
     # - import_tasks: tasks/aws.yml
     #  tags: ['aws']
 
-    - import_tasks: tasks/android.yml
+    - name: Configure Android development environment
+      import_tasks: tasks/android.yml
       tags: ['android', 'flutter']
 
-    - import_tasks: tasks/flutter.yml
+    - name: Configure Flutter development environment
+      import_tasks: tasks/flutter.yml
       tags: ['flutter']
 
     # - import_tasks: tasks/one_password.yml
 
-    - import_tasks: tasks/dock.yml
+    - name: Configure macOS Dock
+      import_tasks: tasks/dock.yml
       tags: ['osx']
 
-    - import_tasks: tasks/time-machine.yml
+    - name: Configure Time Machine settings
+      import_tasks: tasks/time-machine.yml
       tags: ['osx']
 
-    - import_tasks: tasks/osx-spotlight.yml
+    - name: Configure macOS Spotlight exclusions
+      import_tasks: tasks/osx-spotlight.yml
       tags: ['osx-spotlight']
 
     # - name: Install Vundle
@@ -61,21 +70,34 @@
     #  changed_when: false
     #  tags: ['osx']
 
-    - import_tasks: tasks/ssh.yml
+    - name: Configure SSH settings
+      import_tasks: tasks/ssh.yml
       tags: ['ssh', 'repos']
 
-    - import_tasks: tasks/git-repos.yml
+    - name: Configure Git repositories
+      import_tasks: tasks/git-repos.yml
       tags: ['repos']
 
-    - import_tasks: tasks/go.yml
+    - name: Configure Go development environment
+      import_tasks: tasks/go.yml
       tags: ['go']
 
-    - import_tasks: tasks/crontab.yml
+    - name: Configure crontab entries
+      import_tasks: tasks/crontab.yml
       tags: ['crontab']
 
   handlers:
-    - include: handlers/homebrew.yml
-    - include: handlers/espanso.yml
+    - name: Clear homebrew cache
+      file:
+        path: "{{ homebrew_cache_path.stdout | trim }}"
+        state: absent
+      when: 'homebrew_clear_cache | bool'
+      become: "{{ (homebrew_user != ansible_user_id) | bool }}"
+      become_user: "{{ homebrew_user }}"
+
+    - name: Restart espanso
+      command: espanso restart
+      changed_when: false
 
   roles:
     - role: elliotweiser.osx-command-line-tools

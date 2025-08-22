@@ -4,6 +4,7 @@
   ansible.builtin.file:
     path: ~/.ssh/config
     state: touch
+    mode: '0600'
     modification_time: preserve
     access_time: preserve
 

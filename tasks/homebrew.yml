@@ -6,33 +6,35 @@
 
 # Homebrew setup prerequisites.
 - name: Ensure Homebrew parent directory has correct permissions (M1).
+  when: ansible_machine == 'arm64'
+  become: true
   file:
     path: "{{ homebrew_prefix }}"
     owner: "{{ homebrew_user }}"
     state: directory
-  become: true
-  when: ansible_machine == 'arm64'
+    mode: '0755'
 
 - name: Ensure Homebrew parent directory has correct permissions (Intel).
+  when: ansible_machine == 'x86_64'
   block:
     - name: Ensure Homebrew parent directory has correct permissions (MacOS >= 10.13).
+      when: "ansible_distribution_version is version('10.13', '>=')"
+      become: true
       file:
         path: "{{ homebrew_prefix }}"
         owner: root
         state: directory
-      become: true
-      when: "ansible_distribution_version is version('10.13', '>=')"
+        mode: '0755'
 
     - name: Ensure Homebrew parent directory has correct permissions (MacOS < 10.13).
+      when: "ansible_distribution_version is version('10.13', '<')"
+      become: true
       file:
         path: "{{ homebrew_prefix }}"
         owner: root
         group: admin
         state: directory
-        mode: 0775
-      become: true
-      when: "ansible_distribution_version is version('10.13', '<')"
-  when: ansible_machine == 'x86_64'
+        mode: '0775'
 
 - name: Ensure Homebrew directory exists.
   file:
@@ -65,16 +67,18 @@
   become: true
 
 - name: Ensure proper ownership on homebrew_install_path subdirs.
+  become: true
   file:
     path: "{{ homebrew_install_path }}"
     state: directory
     owner: "{{ homebrew_user }}"
     group: "{{ homebrew_group }}"
-  become: true
+    mode: '0755'
 
 # Place brew binary in proper location and complete setup.
 - name: Check if homebrew binary is already in place.
-  stat: "path={{ homebrew_brew_bin_path }}/brew"
+  ansible.builtin.stat:
+    path: "{{ homebrew_brew_bin_path }}/brew"
   register: homebrew_binary
   check_mode: false
 
@@ -87,19 +91,23 @@
   become: true
 
 - name: Ensure proper homebrew folders are in place.
+  become: true
   file:
     path: "{{ homebrew_prefix }}/{{ item }}"
     state: directory
     owner: "{{ homebrew_user }}"
     group: "{{ homebrew_group }}"
-  become: true
+    mode: '0755'
   loop: "{{ homebrew_folders_base + homebrew_folders_additional }}"
 
 - name: Ensure homebrew is updated
+  become: "{{ (homebrew_user != ansible_user_id) | bool }}"
+  become_user: "{{ homebrew_user }}"
   block:
     - name: Force update brew after installation.
       command: "{{ homebrew_brew_bin_path }}/brew update --force"
       when: not homebrew_binary.stat.exists
+      changed_when: true
 
     - name: Where is the cache?
       command: "{{ homebrew_brew_bin_path }}/brew --cache"
@@ -117,7 +125,9 @@
 
     # Cask.
     - name: Ensure blacklisted cask applications are not installed.
-      community.general.homebrew_cask: "name={{ item }} state=absent"
+      community.general.homebrew_cask:
+        name: "{{ item }}"
+        state: absent
       loop: "{{ homebrew_cask_uninstalled_apps }}"
 
     - name: Install configured cask applications.
@@ -133,7 +143,9 @@
 
     # Brew.
     - name: Ensure blacklisted homebrew packages are not installed.
-      community.general.homebrew: "name={{ item }} state=absent"
+      community.general.homebrew:
+        name: "{{ item }}"
+        state: absent
       loop: "{{ homebrew_uninstalled_packages }}"
 
     - name: Ensure configured homebrew packages are installed.
@@ -146,7 +158,9 @@
         - Clear homebrew cache
 
     - name: Upgrade all homebrew packages (if configured).
-      community.general.homebrew: update_homebrew=yes upgrade_all=yes
+      community.general.homebrew:
+        update_homebrew: true
+        upgrade_all: true
       when: homebrew_upgrade_all_packages
       notify:
         - Clear homebrew cache
@@ -158,10 +172,11 @@
       check_mode: false
 
     - name: Install from Brewfile.
-      command: "{{ homebrew_brew_bin_path }}/brew bundle chdir={{ homebrew_brewfile_dir }}"
+      command: "{{ homebrew_brew_bin_path }}/brew bundle"
+      args:
+        chdir: "{{ homebrew_brewfile_dir }}"
       when: homebrew_brewfile.stat.exists and homebrew_use_brewfile
+      changed_when: true
 
-  # Privilege escalation is only required for inner steps when
-  # the `homebrew_user` doesn't match the `ansible_user_id`
-  become: "{{ (homebrew_user != ansible_user_id) | bool }}"
-  become_user: "{{ homebrew_user }}"
+# Privilege escalation is only required for inner steps when
+# the `homebrew_user` doesn't match the `ansible_user_id`

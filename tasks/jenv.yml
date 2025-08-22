@@ -11,13 +11,13 @@
     name: jenv
     state: present
 
-- name: 'Ensure {{ jenv_root }} directory is created'
+- name: Ensure jenv root directory is created
   file:
     path: "{{ jenv_root }}"
     state: directory
     mode: 0755
 
-- name: 'Ensure {{ jenv_root }}/versions directory is created'
+- name: Ensure jenv versions directory is created
   file:
     path: "{{ jenv_root }}/versions"
     state: directory
@@ -52,8 +52,8 @@
   command: jenv rehash
   changed_when: false
 
-- name: "Ensure JDK {{ jenv_default_jdk }} is default"
-  command: "jenv global {{ jenv_default_jdk|quote }}"
+- name: Ensure default JDK is set
+  command: "jenv global {{ jenv_default_jdk | quote }}"
   changed_when: false
 
 - name: Ensure bash_profile/zshrc exists
