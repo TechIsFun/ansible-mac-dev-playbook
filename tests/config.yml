@@ -33,6 +33,7 @@ homebrew_installed_packages:
   - pv
   - wget
   - wrk
+  - emacs
 
 homebrew_uninstalled_packages: []
 
@@ -43,15 +44,11 @@ homebrew_taps:
 
 homebrew_cask_apps:
   - docker
-  - sublimet-text
-  - firefox
-  - jetbrains-toolbox
+  - sublime-text
   - arc
-  - vagrant
   - virtualbox
   - iterm2
   - slack
-  - microsoft-teams
   - google-drive
 
 homebrew_cask_uninstalled_apps: []
