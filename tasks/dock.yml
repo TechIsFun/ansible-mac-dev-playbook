@@ -17,7 +17,7 @@
       changed_when: false
       failed_when: false
     - name: Add Brave item
-      command: dockutil --add "/Applications/Brave Browser.app" --no-restart
+      command: dockutil --add "/Applications/Arc.app" --no-restart
       changed_when: false
       failed_when: false
     - name: Add Sublime Text item
