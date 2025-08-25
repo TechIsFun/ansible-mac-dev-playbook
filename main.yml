@@ -41,6 +41,13 @@
 
     # - import_tasks: tasks/one_password.yml
 
+    - name: Ensure ~/Pictures/Screenshots directory exists
+      ansible.builtin.file:
+        path: "{{ lookup('env', 'HOME') }}/Pictures/Screenshots"
+        state: directory
+        mode: '0755'
+      tags: ['osx', 'screenshots']
+
     - name: Configure macOS Dock
       import_tasks: tasks/dock.yml
       tags: ['osx']
@@ -66,10 +73,10 @@
     #  changed_when: false
     #  tags: ['dotfiles']
 
-    # - name: Run .osx dotfiles.
-    #  shell: ~/.osx --no-restart
-    #  changed_when: false
-    #  tags: ['osx']
+    - name: Run .osx dotfiles.
+      ansible.builtin.command: ~/.osx --no-restart
+      changed_when: false
+      tags: ['osx']
 
     - name: Configure SSH settings
       import_tasks: tasks/ssh.yml
