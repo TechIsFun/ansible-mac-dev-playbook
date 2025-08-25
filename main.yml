@@ -11,8 +11,9 @@
       tags: ['always']
 
   tasks:
-    # - import_tasks: tasks/ohmyzsh.yml
-    #  tags: ['zsh']
+    - name: Configure Oh My Zsh
+      import_tasks: tasks/ohmyzsh.yml
+      tags: ['zsh']
 
     - name: Configure Python environment
       import_tasks: tasks/python.yml
